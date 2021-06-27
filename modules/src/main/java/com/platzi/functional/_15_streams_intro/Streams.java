@@ -36,5 +36,17 @@ public class Streams {
         Stream<String> justJavaCourses = emphasisCourses.filter(course -> course.contains("Java"));
 
         justJavaCourses.forEach(System.out::println);
+
+        Stream<String> coursesStream1 = courseList.stream();
+
+        addOperator(
+                coursesStream1.map(course -> course + "!!")
+                        .filter(course -> course.contains("Java"))
+        ).forEach(System.out::println);
+
+    }
+
+    static <T> Stream<T> addOperator(Stream<T> stream) {
+        return stream.peek(data -> System.out.println("Dato: " + data));
     }
 }
